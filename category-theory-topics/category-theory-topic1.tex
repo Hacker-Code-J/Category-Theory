@@ -1,0 +1,187 @@
+\begin{example}[Determinant]
+\ \begin{itemize}
+	\item[] \textbf{[ Two Categories ]}
+	\begin{enumerate}
+		\item \textbf{Category of Commutative Rings} ($\mathsf{CRing}$)
+		\begin{itemize}
+			\item \textbf{Objects}: Commutative rings $R,S,...$
+			\item \textbf{Morphisms}: Ring homomorphisms $\phi:R\to S$
+		\end{itemize}
+		\item \textbf{Category of Groups} ($\mathsf{Grp}$)
+		\begin{itemize}
+			\item \textbf{Objects}: Groups
+			\item \textbf{Morphisms}: Group homomorphisms
+		\end{itemize}
+	\end{enumerate}
+	\item[] \textbf{[ Two Functors ]} Note that $\mathbf{GL}_n$ represents the functor, while $GL_n$ denotes the group.
+	\begin{enumerate}
+		\item \textbf{General Linear Group Functor} ($\mathbf{GL}_n:\mathsf{CRing}\to\mathsf{Grp}$)
+		\begin{itemize}
+			\item \textbf{On Objects}: \[
+			R\mapsto GL_n(R)
+			\] Maps a ring $R$ to the general linear group $GL_n(R)$, which consists of all $n\times n$ invertible matrices over $R$.
+			\item \textbf{On Morphisms}: Let $\mathbf{GL}_n(\phi):GL_n(R)\to GL_n(S)$. \[
+			\phi\mapsto\mathbf{GL}_n(\phi)
+			\] It preserves invertibility.
+		\end{itemize}
+		\item \textbf{Unit Functor} ($\mathbf{U}:\mathsf{CRing}\to\mathsf{Grp}$)
+		\begin{itemize}
+			\item \textbf{On Objects}: \[
+			R\mapsto R^{\times}
+			\]
+			\item \textbf{On Morphisms}: Let $\mathbf{U}(\phi):R^{\times}\to S^{\times}$. \[
+			\phi\mapsto\mathbf{U}(\phi)
+			\] It preserves the unit property.
+		\end{itemize}
+	\end{enumerate}
+	\newpage
+	\item \textbf{[ Natural Transformation: Determinant ]} The determinant \[
+	\text{det}_R:GL_n(R)\to R^{\times}
+	\] is a natural transformation between two functors, $\mathbf{GL}_n$ and $\mathbf{U}$.
+	\begin{itemize}
+		\item \textbf{On Objects}: $\eta_R:GL_n(R)\to R^{\times}$
+		\item \textbf{Naturality Condition}: The following diagram commutes:
+		\begin{center}
+		\begin{tikzcd}
+			GL_n(R) \arrow[rr, "\eta_R"] \arrow[dd, "\mathbf{GL_n}(\phi)"'] &  & R^{\times} \arrow[dd, "\mathbf{U}(\phi)"] \\
+			&  &                                           \\
+			GL_n(S) \arrow[rr, "\eta_S"]                                    &  & S^{\times}                               
+		\end{tikzcd}
+		\end{center}
+	\end{itemize}
+\end{itemize}
+\begin{figure}[h!]\centering
+% https://tikzcd.yichuanshen.de/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZAJgBoAGAXVJADcBDAGwFcYkQAxACgA0BKEAF9S6TLnyEUAFgrU6TVuwDivAcNHY8BIjOJyGLNohAqAmmpEgMmiUTJ6aBxce7mhl6+O0pysxwqMQHncNL0lkXwd5Q3ZTITkYKABzeCJQADMAJwgAWyRfEBwIJABGfxjjAB1KmBx6AH0AJRCQLNykAGYaIqQyaOcQatqGgGUWtrzEAp7ELpBGegAjGEYABTEtSRBMrCSACxwQcoHudIsM7MmywuLEPqdAlTPxy6QZG6QAVmPA9KP5pYrdY2bzbXYHeKCIA
+\begin{tikzcd}
+	X \arrow[dd, "f"'] &  & F(X) \arrow[rr, "\eta_X"] \arrow[dd, "F(f)"'] &  & G(X) \arrow[dd, "G(f)"] \\
+	&  &                                               &  &                         \\
+	Y                  &  & F(Y) \arrow[rr, "\eta_Y"]                     &  & G(Y)                   
+\end{tikzcd}
+\end{figure}
+\begin{figure}[h!]\centering
+% https://tikzcd.yichuanshen.de/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZAJgBoAGAXVJADcBDAGwFcYkQBxAGQH0wAKAEoBKEAF9S6TLnyEUAFgrU6TVu0EA9YAB1teALbwx4ySAzY8BIouLKGLNohABlLboNGTUi7KJlbNPZqTtx8-M6iEt4yVijkSoGqjiCCXmbSlnLI8QEqDuzO4sowUADm8ESgAGYAThD6SPEgOBBIAIyJ+U66MDj0PKlRILX1SADMNC1IZHnBID19PIVDIw2ITVOIEyCM9ABGMIwAChm+TjVYpQAWOCCdc7r69DhXe1XAoWBi-LpoV1iRUyrdqTVqIGZBZKPZ6vd4AVW+v3+gOqdTWimaYIArPcodo-lg7jt9ocTj5YiALtdbmJKGIgA
+\begin{tikzcd}
+	R \arrow[dd, "\phi"'] &  & GL_n(R) \arrow[rr, "\eta_R"] \arrow[dd, "\mathbf{GL_n}(\phi)"'] &  & R^{\times} \arrow[dd, "\mathbf{U}(\phi)"] \\
+	&  &                                                                 &  &                                           \\
+	S                     &  & GL_n(S) \arrow[rr, "\eta_S"]                                    &  & S^{\times}                               
+\end{tikzcd}
+\end{figure}
+\end{example}
+\begin{example}
+Consider $\mathbb{Z}$ and $GL_2(\Z)=\set{\begin{pmatrix}
+		a & b \\ c & d
+\end{pmatrix}\in M_{2}(\Z):ad-bc\neq 0}$.
+\begin{itemize}
+	\item[] \textbf{[ Two Categories ]}
+	\begin{enumerate}
+		\item \textbf{Category of Commutative Rings} ($\mathsf{CRing}$)
+		\begin{itemize}
+			\item \textbf{Object}: Commutative ring $(\Z,+,\times)$
+			\item \textbf{Morphism}: Ring homomorphism $\phi:\Z\to \Z$
+		\end{itemize}
+		\item \textbf{Category of Groups} ($\mathsf{Grp}$)
+		\begin{itemize}
+			\item \textbf{Objects}: Groups $(GL_2(\Z),*)$ and $(\Z^\times,\times)$. Here `$*$' denotes matrix multiplication. Note that \[
+			\Z^\times=\set{1,-1}.
+			\]
+			\item \textbf{Morphisms}: Group homomorphisms \[
+			\sigma:GL_2(\Z)\to GL_2(\Z)\quad\text{and}\quad\tau:\Z^\times\to\Z^\times.
+			\] Note that $\tau:\set{\pm1}\to\set{\pm1}$
+		\end{itemize}
+	\end{enumerate}
+	\newpage
+	\item[] \textbf{[ Two Functors ]} Note that $\mathbf{GL}_2$ represents the functor, while $GL_2$ denotes the group.
+	\begin{enumerate}
+		\item \textbf{General Linear Group Functor} ($\mathbf{GL}_2:\mathsf{CRing}\to\mathsf{Grp}$)
+		\begin{itemize}
+			\item \textbf{On Object}: \[
+			\Z\mapsto GL_2(\Z)
+			\]
+			\item \textbf{On Morphism}: \[
+			\phi\mapsto\sigma=\mathbf{GL}_2(\phi)
+			\] It preserves invertibility.
+		\end{itemize}
+		\item \textbf{Unit Functor} ($\mathbf{U}:\mathsf{CRing}\to\mathsf{Grp}$)
+		\begin{itemize}
+			\item \textbf{On Object}: \[
+			\Z\mapsto \Z^{\times}=\set{\pm 1}
+			\]
+			\item \textbf{On Morphism}: \[
+			\phi\mapsto\tau=\mathbf{U}(\phi)
+			\] It preserves the unit property.
+		\end{itemize}
+	\end{enumerate}
+	\item \textbf{[ Natural Transformation: Determinant ]} The determinant \[
+	\fullfunction{\det_\Z}{GL_2(\Z)}{\Z^{\times}=\set{\pm 1}}{\begin{pmatrix}
+			a & b\\ c & d
+	\end{pmatrix}}{ad-bc=\det_\Z\begin{pmatrix}
+	a & b\\ c & d
+\end{pmatrix}}
+	\] is a natural transformation between two functors, $\mathbf{GL}_2$ and $\mathbf{U}$.
+	\begin{itemize}
+		\item \textbf{Naturality Condition}: The following diagram commutes:
+		\begin{center}
+			\begin{tikzcd}
+				GL_2(\Z) \arrow[rr, "\eta_\Z=\det_\Z"] \arrow[dd, "\sigma=\mathbf{GL}_2(\phi)"] &  & \Z^{\times} \arrow[dd, "\tau=\mathbf{U}(\phi)"] \\
+				&  &                                           \\
+				GL_n(\Z) \arrow[rr, "\eta_\Z=\det_\Z"]                                    &  & \Z^{\times}                               
+			\end{tikzcd}
+		\end{center}
+	\end{itemize}
+\end{itemize}
+\begin{figure}[h!]\centering
+	% https://tikzcd.yichuanshen.de/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZAJgBoAGAXVJADcBDAGwFcYkQBxAGQH0wAKAEoBKEAF9S6TLnyEUAFgrU6TVu0EA9YAB1teALbwx4ySAzY8BIouLKGLNohABlLboNGTUi7KJlbNPZqTtx8-M6iEt4yVijkSoGqjiCCXmbSlnLI8QEqDuzO4sowUADm8ESgAGYAThD6SPEgOBBIAIyJ+U66MDj0PKlRILX1SADMNC1IZHnBID19PIVDIw2ITVOIEyCM9ABGMIwAChm+TjVYpQAWOCCdc7r69DhXe1XAoWBi-LpoV1iRUyrdqTVqIGZBZKPZ6vd4AVW+v3+gOqdTWimaYIArPcodo-lg7jt9ocTj5YiALtdbmJKGIgA
+	\begin{tikzcd}
+		R \arrow[dd, "\phi"'] &  & GL_n(R) \arrow[rr, "\eta_R=\det_R"] \arrow[dd, "\mathbf{GL}_n(\phi)"] &  & R^{\times} \arrow[dd, "\mathbf{U}(\phi)"] \\
+		&  &                                                                 &  &                                           \\
+		S                     &  & GL_n(S) \arrow[rr, "\eta_S=\det_S"]                                    &  & S^{\times}                               
+	\end{tikzcd}
+\end{figure}
+\begin{figure}[h!]\centering
+% https://tikzcd.yichuanshen.de/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRAB12BbOnACwBGA4AC0AviDGl0mXPkIoyAJiq1GLNpx78hoiVJnY8BIkvKr6zVohABxADIB9JQAotvQcPEBKSdJAYRvKmpCrUlho2Ds5u3B66Pn6GciYoACzm4erWHHE6XmIAepx4XPBJAbLGCsgZYWpWmnmeesXspeViqjBQAOblKKAAZgBOEFxIZCA4EEgAjFmNNpxofFgg1Ax0AjAMAApVwTYjWL18OBWj40hm07OIAMyLkblo2AC87jpDwA5iMSs1r5NttdgcgqkQAwYEMLgYQFcJogMnckABWZ45Ep0JifZoCH4AVTEsVWWGBUNB+0OkOhsMuYyRtxmSBRESx7FgOEcXxa4gZ10e1BZiAxDRenC5PPxBUkFDEQA
+\begin{tikzcd}
+	\mathbb{Z} \arrow[dd, "\phi"'] &  & GL_2(\mathbb{Z}) \arrow[dd, "\sigma=\mathbf{GL}_2(\phi)"] \arrow[rr, "\det_\mathbb{Z}"] &  & \mathbb{Z}^\times \arrow[dd, "\tau=\mathbf{U}(\phi)"] \\
+	&  &                                                                                       &  &                                                       \\
+	\mathbb{Z}                     &  & GL_2(\mathbb{Z}) \arrow[rr, "\det_\mathbb{Z}"]                                        &  & \mathbb{Z}^\times                                    
+\end{tikzcd}
+\end{figure}
+\begin{figure}[h!]\centering
+% https://tikzcd.yichuanshen.de/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRAB12BbOnACwBGA4AC0AviDGl0mXPkIoyAJiq1GLNpx78hoiVJnY8BIkvKr6zVohABxADIB9JQAotvQcPEBKSdJAYRvKmpCrUlho2Ds5u3B66Pn6GciYoACzm4erWHHE6XmIAepx4XPBJAbLGCsgZYWpWmnmeesXspeUGlUGpJKQAjBbZbBWBKTVmg1mNNqNVwekDQzMgkqowUADm5SigAGYAThBcSGQgOBBI-dORuWh8WCDUDHQCMAwACvOpIAdYm3wcBVDsckGZzpdEABmG45ThobAAXncOj2wAcYhi8Ievmer3eXx6ChADBgeyBXRBJ0QGQhSAArLCmjg6Exkc0BGiAKpiWL3LC4kn4z7fYmk8nAo7U8EXJC0iJw9iwHCOFEtcSS0HQ6iyxCMhq3TjK1Ucgqa6lnXW0t5gKBygCczywYByUAgOBwGyeBsV2kE3Ik1DgDwliAAtOCXm8RUS2M7sLBzacdZDwQqmn7Oej7JilN6GM7Xe7PXbqDa7dCzlGCaK42AE6xKVKrimkDCSYW2G6PV6yzBbUgw1CzumbGqsxjnPnhYTxnWG0nENc6Xq+wPw2lHSBg1hQ1XOzZuyXp9HZ9V51hE0yxxyA4uAGytxAAdidLq7xd7Poz8TRk7zQYhkCG54qetY2PGl6Nv4VJII+K4ABxvkWPalt+N6ZnegG7sBtLVjGc4QfWUFrGIQA
+\begin{tikzcd}
+	\mathbb{Z} \arrow[dd, "\phi"'] \arrow[rrrr, "\mathbf{U}" description, dotted, bend left=49, shift left=2] \arrow[rr, "\mathbf{GL}_2" description, dotted, bend left] &  & GL_2(\mathbb{Z}) \arrow[dd, "\sigma=\mathbf{GL}_2(\phi)"] \arrow[rr, "\det_\mathbb{Z}"] &  & \mathbb{Z}^\times \arrow[dd, "\tau=\mathbf{U}(\phi)"] \\
+	{} \arrow[rr, "\mathbf{GL}_2" description, dotted, shift left=4] \arrow[rrrr, "\mathbf{U}" description, dotted, shift right=4]                                       &  & {}                                                                                    &  & {}                                                    \\
+	\mathbb{Z} \arrow[rr, "\mathbf{GL}_2" description, dotted, bend right] \arrow[rrrr, "\mathbf{U}" description, dotted, bend right=49]                                 &  & GL_2(\mathbb{Z}) \arrow[rr, "\det_\mathbb{Z}"]                                        &  & \mathbb{Z}^\times                                    
+\end{tikzcd}
+\end{figure}
+\end{example}
+
+\section{Category Definitions}
+\subsection{Matrices over Commutative Rings}
+Define the category \textbf{Mat}\_n\_(\textbf{CRing}) where:
+\begin{itemize}
+	\item Objects are \(n \times n\) matrices over any commutative ring \(R\).
+	\item Morphisms are ring homomorphisms applied element-wise to matrices.
+\end{itemize}
+
+\subsection{Determinant Functor}
+The functor \textbf{Det}: \textbf{Mat}\_n\_(\textbf{CRing}) \(\rightarrow\) \textbf{Grp} is defined by:
+\begin{itemize}
+	\item On Objects: Mapping \(A\) to the group formed under multiplication by \(\det(A)\).
+	\item On Morphisms: If \(f: R \rightarrow S\) is a ring homomorphism, then \(\det(f(A)) = f(\det(A))\), maintaining the structure of group morphisms.
+\end{itemize}
+
+\section{Properties and Transformations}
+\subsection{Functor Properties}
+The determinant functor preserves:
+\begin{itemize}
+	\item Composition: \(\det(AB) = \det(A)\det(B)\)
+	\item Identities: \(\det(I) = 1\), where \(I\) is the identity matrix.
+\end{itemize}
+
+\subsection{Natural Transformations}
+Consider a transformation scaling each element of matrix \(A\) by a unit \(u\) in \(R\). The determinant changes as:
+\[ \tau_A: \det(A) \mapsto u^n \det(A) \]
+where \(n\) is the matrix dimension, reflecting the multiplicative scaling in the group.
+
+\section{Conclusion}
+Through the lens of category theory, the determinant integrates the algebraic structures of commutative rings and groups, enhancing our understanding of its invariant and multiplicative properties.

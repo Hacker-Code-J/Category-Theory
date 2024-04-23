@@ -1,0 +1,186 @@
+\begin{tcolorbox}[colframe=defcolor,title={\color{white}\bf Truth Function}]
+	\begin{definition}
+		Let $\B=\set{\true,\false}$ be the \textit{boolean domain}. Let $k\in\N$. A mapping \[
+		f:\B^k\to\B
+		\] is called a \textbf{truth function}.
+	\end{definition}
+\end{tcolorbox}
+\begin{remark}[Truth Functions of Connectives]
+	The logical connectives are assumed to be \textbf{truth-functional}.
+	Hence, they are represented by certain \textbf{truth functions}.
+	\begin{itemize}
+		\item[] \textbf{Logical Negation} The \textit{logical not connective} defines the truth function $f^{\lnot}$
+		as follows:
+		\begin{align*}
+			f^{\lnot}(\false)&=\true\\
+			f^{\lnot}(\true)&=\false
+		\end{align*}
+		\item[] \textbf{Logical Conjunction} The \textit{conjunction connective} defines the truth function $f^{\land}$
+		as follows:
+		\begin{align*}
+			f^{\land}(\true,\true)&=\true\\
+			f^{\land}(\true,\false)&=\false\\
+			f^{\land}(\false,\true)&=\false\\
+			f^{\land}(\false,\false)&=\false
+		\end{align*}
+		\item[] \textbf{Logical Disjunction} The \textit{disjunction connective} defines the truth function $f^{\lor}$
+		as follows:
+		\begin{align*}
+			f^{\lor}(\true,\true)&=\true\\
+			f^{\lor}(\true,\false)&=\true\\
+			f^{\lor}(\false,\true)&=\true\\
+			f^{\lor}(\false,\false)&=\false
+		\end{align*}
+	\end{itemize}
+\end{remark}
+
+\begin{tcolorbox}[colframe=procolor,title={\color{white}\bf Count of Truth Functions}]
+\begin{proposition}
+There are $2^{(2^k)}$ distinct truth functions on $k$ variables.
+\end{proposition}
+\end{tcolorbox}
+\begin{proof}
+Let $f:\B^k\to\B$ be a truth function for $k\in\N$. Then
+\begin{itemize}
+	\item[] (Cardinality of Cartesian Product of Finite Sets)
+	\begin{align*}
+		\#(\B^k)&=\#(\overbrace{\B\times\cdots\times\B}^{\text{$k$ times}})
+		=\overbrace{\#\B\#\B\cdots\#\B}^{\text{$k$ times}}
+		=\overbrace{2\cdot 2\cdots2}^{\text{$k$ times}}
+		=2^k.
+	\end{align*}
+	\item[] (Cardinality of Set of All Mappings.)
+	\begin{align*}
+	\#(T^S):=\set{f\subseteq S\times T:\text{$f$ is a mapping}}=(\# T)^{(\# S)}
+	\implies \#(\B^{(\B^k)})=2^{(2^k)}
+	\end{align*}
+\end{itemize}
+\end{proof}
+
+\begin{tcolorbox}[colframe=corcolor,title={\color{white}\bf Unary Truth Functions}]
+	\begin{corollary}
+		There are 4 distinct unary truth functions:
+		\begin{itemize}
+			\item The \textit{constant function} $f(p)=\false$
+			\item The \textit{constant function} $f(p)=\true$
+			\item The \textit{identity function} $f(p)=p$
+			\item The \textit{logical not function} $f(p)=\lnot p$
+		\end{itemize}
+	\end{corollary}
+\end{tcolorbox}
+\begin{proof}
+From Count of Truth Functions there are $2^{(2^1)}=4$
+distinct truth functions on 1 variable. These can be depicted in a truth table as follows:
+\begin{table}[h!]\centering
+\begin{tabular}{|c|cccc|}
+\hline
+$p$ & $\circ_1$ & $\circ_2$ & $\circ_3$ & $\circ_4$ \\
+\hline
+$\true$ & $\true$ & $\true$ & $\false$ & $\false$ \\
+$\false$ & $\false$ & $\true$ & $\false$ & $\false$ \\
+\hline
+\end{tabular}
+\end{table}
+\begin{itemize}
+	\item[$\circ_1$:] Whether $p=\true$ or $p=\false$, $\circ_1(p)=\true$. Thus $\circ_1$ is the \textit{constant function} $\circ_1(p)=\true$.
+	\item[$\circ_2$:] We have \begin{enumerate}[(1)]
+		\item $p=\true\implies\circ_2(p)=\true$
+		\item $p=\false\implies\circ_2(p)=\false$
+	\end{enumerate} Thus $\circ_2$ is the \textit{identity function} $\circ_2(p)=p$.
+	\item[$\circ_3$:] We have \begin{enumerate}[(1)]
+		\item $p=\true\implies\circ_3(p)=\false$
+		\item $p=\false\implies\circ_3(p)=\true$
+	\end{enumerate} Thus $\circ_3$ is the \textit{logical not function} $\circ_3(p)=\lnot p$.
+	\item[$\circ_4$:] Whether $p=\true$ or $p=\false$, $\circ_4(p)=\false$. Thus $\circ_1$ is the \textit{constant function} $\circ_4(p)=\false$.
+\end{itemize}
+\end{proof}
+
+\begin{tcolorbox}[colframe=corcolor,title={\color{white}\bf Binary Truth Functions}]
+\begin{corollary}
+There are 16 distinct unary truth functions:
+\begin{itemize}
+\item Two \textit{constant operations}:
+	\begin{itemize}
+		\item $f_{\true}(p,q)=\true$
+		\item $f_{\false}(p,q)=\false$
+	\end{itemize}
+\item Two \textit{projections}:
+	\begin{itemize}
+		\item $\mathsf{Proj}_1(p,q)=p$
+		\item $\mathsf{Proj}_2(p,q)=q$
+	\end{itemize} 
+\item Two \textit{negated projections}:
+	\begin{itemize}
+	\item $\overline{\mathsf{Proj}_1}(p,q)=\lnot p$
+	\item $\overline{\mathsf{Proj}_2}(p,q)=\lnot q$
+	\end{itemize} 
+\item The \textit{conjunction}: $p\land q$
+\item The \textit{disjunction}: $p\lor q$
+\item Two \textit{conditionals}:
+	\begin{itemize}
+		\item $p\implies q$
+		\item $q\implies p$
+	\end{itemize}
+\item The \textit{biconditional} (iff): $p\iff q$
+\item The \textit{exclusive or} (xor): $\lnot(p\iff q)$
+\item Two \textit{negated conditionals}:
+	\begin{itemize}
+		\item $\lnot(p\implies q)$
+		\item $\lnot(q\implies p)$
+	\end{itemize}
+\item The \textit{NAND} $p\uparrow q$
+\item The \textit{NOR} $p\downarrow q$
+\end{itemize}
+\end{corollary}
+\end{tcolorbox}
+\begin{proof}
+	From Count of Truth Functions there are $2^{(2^2)}=16$
+	distinct truth functions on 2 variable. These can be depicted in a truth table as follows:
+	\begin{table}[h!]\centering
+		\begin{tabular}{|r|cccc|}
+			\hline
+			$p$ & $\true$ & $\true$ & $\false$ & $\false$ \\
+			$q$ & $\true$ & $\false$ & $\true$ & $\false$ \\
+			\hline
+			$f_{\false}(p,q)$ & $\false$ & $\false$ & $\false$ & $\false$ \\
+			$p\downarrow q$ & $\false$ & $\false$ & $\false$ & $\true$ \\
+			$\lnot(p\impliedby q)$ & $\false$ & $\false$ & $\true$ & $\false$ \\
+			$\overline{\mathsf{Proj}_1}(p,q)$ & $\false$ & $\false$ & $\true$ & $\true$ \\
+			$\lnot(p\implies q)$ & $\false$ & $\true$ & $\false$ & $\false$ \\
+			$\overline{\mathsf{Proj}_2}(p,q)$ & $\false$ & $\true$ & $\false$ & $\true$ \\
+			$\lnot(p\iff q)$ & $\false$ & $\true$ & $\true$ & $\false$ \\
+			$p\uparrow q$ & $\false$ & $\true$ & $\true$ & $\true$ \\
+			$p\land q$ & $\true$ & $\false$ & $\false$ & $\false$ \\
+			$p\iff q$ & $\true$ & $\false$ & $\false$ & $\true$ \\
+			$\mathsf{Proj}_2(p,q)$ & $\true$ & $\false$ & $\true$ & $\false$ \\
+			$p\implies q$ & $\true$ & $\false$ & $\true$ & $\true$ \\
+			$\mathsf{Proj}_1(p,q)$ & $\true$ & $\true$ & $\false$ & $\false$ \\
+			$p\impliedby q$ & $\true$ & $\true$ & $\false$ & $\true$ \\
+			$p\lor q$ & $\true$ & $\true$ & $\true$ & $\false$ \\
+			$f_{\true}(p,q)$ & $\true$ & $\true$ & $\true$ & $\true$ \\
+			\hline
+		\end{tabular}
+	\end{table}
+\end{proof}
+
+\newpage
+\begin{tcolorbox}[colframe=defcolor,title={\color{white}\bf Formal Grammer}]
+\begin{definition}
+The formal grammar of the language of propositional logic (and hence its WFFs) can be defined in the following ways.
+\begin{itemize}
+	\item \textbf{Backus-Naur Form}
+	In Backus-Naur form, the formal grammar of the language of propositional logic takes the following form:
+	\begin{align*}
+		<\texttt{formula}>\quad &::=\quad p\mid\top\mid\bot &\text{where $p\in\mathcal{P}_0$ is a letter}\\
+		<\texttt{formula}>\quad &::=\quad \lnot<\texttt{formula}>\\
+		<\texttt{formula}>\quad &::=\quad (<\texttt{formula}> <\texttt{op}> <\texttt{formula}>)\\
+		<\texttt{op}>\quad &::=\quad \land\mid\lor\mid\implies\mid\iff
+	\end{align*} Note that this is a top-down grammar:
+we start with a metasymbol <formula>
+progressively replace it with constructs containing other metasymbols and/or primitive symbols
+until finally we are left with a well-formed formula of L0
+consisting of nothing but primitive symbols.
+\end{itemize}
+
+\end{definition}
+\end{tcolorbox}
