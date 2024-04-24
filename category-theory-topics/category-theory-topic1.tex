@@ -154,7 +154,45 @@ Consider $\mathbb{Z}$ and $GL_2(\Z)=\set{\begin{pmatrix}
 \end{tikzcd}
 \end{figure}
 \end{example}
+\newpage
+\begin{example}
+\ \begin{itemize}
+	\item[] \textbf{[ Category ]}
+	\begin{enumerate}
+		\item \textbf{Category of Finite Vector Spaces} ($\mathsf{FinVect}_K$)
+		\begin{itemize}
+			\item \textbf{Objects}: 
+			\begin{itemize}
+				\item Vector space $V$ over a field $K$
+				\item Dual Space $V^*$ over a field $K$.
+			\end{itemize}
+			\item \textbf{Morphisms}:  
+			\begin{itemize}
+				\item Linear Transformation
+				\item Dual Transformation
+			\end{itemize}
+		\end{itemize}
+	\end{enumerate}
+	\item[] \textbf{[ Functor ]}
+	\begin{enumerate}
+		\item \textbf{Dual Space Functor} ($\mathbf{Dual}:\mathsf{Vect}_K\to\mathsf{Vect}_K$)
+		\begin{itemize}
+			\item \textbf{On Objects}: \[
+			V\mapsto V^*
+			\] Maps a vector space $V$ to the dual space $V^*$, which  which consists of all linear functionals from $V$ to $K$.
+			\item \textbf{On Morphisms}: Let $\mathbf{GL}_n(\phi):GL_n(R)\to GL_n(S)$. \[
+			\phi\mapsto\mathbf{GL}_n(\phi)
+			\] It preserves invertibility.
+		\end{itemize}
+	\end{enumerate}
+	\item \textbf{[ Natural Transformation: Determinant ]} The determinant \[
+	\text{det}_R:GL_n(R)\to R^{\times}
+	\] is a natural transformation between two functors, $\mathbf{GL}_n$ and $\mathbf{U}$.
+\end{itemize}
+\end{example}
 
+
+\newpage
 \section{Category Definitions}
 \subsection{Matrices over Commutative Rings}
 Define the category \textbf{Mat}\_n\_(\textbf{CRing}) where:
