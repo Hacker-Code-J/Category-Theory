@@ -163,26 +163,32 @@ Consider $\mathbb{Z}$ and $GL_2(\Z)=\set{\begin{pmatrix}
 		\begin{itemize}
 			\item \textbf{Objects}: 
 			\begin{itemize}
-				\item Vector space $V$ over a field $K$
-				\item Dual Space $V^*$ over a field $K$.
+				\item Vector space $V=K^n$ over a field $K$
+				\item Dual Space $V^*=\set{\phi\in K^{V}:\phi\ \text{is linear transformation}}$.
 			\end{itemize}
 			\item \textbf{Morphisms}:  
 			\begin{itemize}
-				\item Linear Transformation
-				\item Dual Transformation
+				\item Linear Transformation $T:V(=K^n)\to W(=K^m)$
+				\item Dual Transformation $T^*:W^*\to V^*$ defined by \[
+				T^*f:=f\circ T\quad\text{for all}\quad f\in W*.
+				\] Sometimes we denote $V^*:=\mathcal{L}(V,K)$. Note that \begin{itemize}
+					\item $(T^*f)\textbf{v}=f(T\textbf{v})$ for all $\textbf{v}\in V$;
+					\item $f\in W^*\implies T^*f\in V^*$;
+					\item $T^*$ is linear.
+				\end{itemize}
 			\end{itemize}
 		\end{itemize}
 	\end{enumerate}
 	\item[] \textbf{[ Functor ]}
 	\begin{enumerate}
-		\item \textbf{Dual Space Functor} ($\mathbf{Dual}:\mathsf{Vect}_K\to\mathsf{Vect}_K$)
+		\item \textbf{Dual Space Functor} ($\mathcal{D}:\mathsf{FinVect}_K\to\mathsf{FinVect}_K$)
 		\begin{itemize}
 			\item \textbf{On Objects}: \[
-			V\mapsto V^*
+			V\mapsto V^*=\mathcal{D}(V)
 			\] Maps a vector space $V$ to the dual space $V^*$, which  which consists of all linear functionals from $V$ to $K$.
-			\item \textbf{On Morphisms}: Let $\mathbf{GL}_n(\phi):GL_n(R)\to GL_n(S)$. \[
-			\phi\mapsto\mathbf{GL}_n(\phi)
-			\] It preserves invertibility.
+			\item \textbf{On Morphisms}:\[
+			T\mapsto T^*=\mathcal{D}(T)
+			\]
 		\end{itemize}
 	\end{enumerate}
 	\item \textbf{[ Natural Transformation: Determinant ]} The determinant \[
@@ -191,7 +197,27 @@ Consider $\mathbb{Z}$ and $GL_2(\Z)=\set{\begin{pmatrix}
 \end{itemize}
 \end{example}
 
-
+\begin{tikzcd}
+	\mathbb{R}^2 \arrow[r, "\eta_{\mathbb{R}^2}"] \arrow[d, "\text{id}"'] & (\mathbb{R}^2)^{**} \arrow[d, "\text{id}^{**}"] \\
+	\mathbb{R}^2 \arrow[r, "\eta_{\mathbb{R}^2}"'] & (\mathbb{R}^2)^{**}
+\end{tikzcd}
+\begin{tikzpicture}[scale=0.8]
+	% Draw coordinate axes
+	\draw[thick, ->] (-1,0) -- (5,0) node[right] {$x$};
+	\draw[thick, ->] (0,-1) -- (0,5) node[above] {$y$};
+	
+	% Draw point representing vector v = (2, 3)
+	\filldraw[blue] (2,3) circle (2pt) node[above right] {$(2,3)$};
+	
+	% Identity Functor Id(R^2) mapping
+	\draw[->, red] (2,3) -- (4,3) node[midway, above] {$\text{Id}$};
+	
+	% Double Dual Functor DD(R^2) mapping
+	\draw[->, green] (2,3) -- (2,1) node[midway, left] {$DD$};
+	
+	% Evaluation Natural Transformation eta
+	\draw[->, blue, dotted] (2,3) to[out=180,in=90] (0,2) node[left] {$\eta_{\mathbb{R}^2}(v)$};
+\end{tikzpicture}
 \newpage
 \section{Category Definitions}
 \subsection{Matrices over Commutative Rings}
