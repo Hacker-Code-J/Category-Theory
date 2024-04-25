@@ -155,6 +155,59 @@ Consider $\mathbb{Z}$ and $GL_2(\Z)=\set{\begin{pmatrix}
 \end{figure}
 \end{example}
 \newpage
+
+\begin{definition}[Vector Space and Dual Space]
+\ \begin{itemize}
+	\item Let $V$ be a finite-dimensional \emph{vector space} over field $\mathbb{K}$. That is, $V=K^n$.
+	\item The \emph{dual space} $V^*$ of $V$ consists of all linear functionals on $V$. That is, $$V^* = \{\phi: V \rightarrow \mathbb{R} \mid \phi \text{ is linear}\}.$$
+\end{itemize}
+\end{definition}
+
+\begin{definition}[Double Dual Space]
+	The \emph{double dual space} $V^{**}$ of a vector space $V$ is defined as the dual of the dual space, i.e., $V^{**} = (V^*)^*$. For each $\psi \in V^{**}$, $\psi$ is a functional acting on elements of $V^*$.
+\end{definition}
+
+\section*{Natural Isomorphism Between $V$ and $V^{**}$}
+\begin{theorem}[Canonical Isomorphism]
+	For every finite-dimensional vector space $V$, there is a canonical isomorphism $\eta_V: V \rightarrow V^{**}$ defined by
+	\[
+	\eta_V(v)(\phi) = \phi(v),
+	\]
+	for every
+$v \in V$ and $\phi \in V^*$. This map is a natural isomorphism, meaning it commutes with all linear transformations.
+\end{theorem}
+\begin{definition}[Induced Map on Dual and Double Dual Spaces]
+	For a linear transformation $T: V \rightarrow W$ between vector spaces, the induced map on the dual space, $T^*: W^* \rightarrow V^*$, is defined by \[
+	T^*(\phi)=\phi\circ T, 
+	\] where $\phi \in W^*$. Similarly, the induced map on the double dual space, $T^{**}: V^{**} \rightarrow W^{**}$, is defined by \[
+	T^{**}(\psi)=\psi\circ T^*,
+	\] where $\psi \in V^{**}$.
+\end{definition}
+\section{Example: Application in $\mathbb{R}^2$}
+\begin{example}[Matrix Transformation and Double Dual]
+	Consider the vector space $V = \mathbb{R}^2$, and let $T: \mathbb{R}^2 \rightarrow \mathbb{R}^2$ be represented by the matrix
+	\[
+	A=\begin{bmatrix}
+		1 & 2 \\ 3 & 4
+	\end{bmatrix}
+	\] We compute the induced maps $T^*$ and $T^{**}$ and verify the natural transformation property with $\eta_V$.
+	
+	\textbf{Action of $T$ and $\eta_V$:}
+	If $\mathbf{v} = (1, 1)$, then \[
+	T(\textbf{v})=A\begin{bmatrix}
+		1 \\ 1
+	\end{bmatrix} = \begin{bmatrix}
+	3 \\ 7
+\end{bmatrix}.
+	\] The action of $\eta_{\mathbb{R}^2}$ and $\phi$ defined by $\phi(\mathbf{v}) = 3v_1 - 2v_2$ gives \[
+	\eta_{\R^2}((1,1))(\phi)=1\quad\text{and}\quad\eta_{\R^2}((3,7))(\phi)=3\times 3-2\times 7=-5.
+	\] \textbf{Verification of Commutativity:}
+	To confirm the natural transformation property, we need to show \[
+	T^{**}(\eta_{\R^2}(\textbf{v}))=\eta_{\R^2}(T(\textbf{v})).
+	\]
+	For $\mathbf{v} = (1, 1)$, the calculations show that both sides of the equation represent consistent transformations via the isomorphism $\eta_{\mathbb{R}^2}$, proving the natural transformation.
+\end{example}
+\newpage
 \begin{example}
 \ \begin{itemize}
 	\item[] \textbf{[ Category ]}
@@ -240,23 +293,39 @@ Consider $\mathbb{Z}$ and $GL_2(\Z)=\set{\begin{pmatrix}
 	\end{tikzpicture}
 	\caption{Visualization of Vector Space, Dual Space, Double Dual Space, Linear Transformation, Dual Transformation, and Double Transformation}
 \end{figure}
-\begin{tikzpicture}[scale=0.8]
-	% Draw coordinate axes
-	\draw[thick, ->] (-1,0) -- (5,0) node[right] {$x$};
-	\draw[thick, ->] (0,-1) -- (0,5) node[above] {$y$};
+\begin{tikzpicture}[scale=1.5]
+	% Coordinate axes
+	\draw[->] (-0.5,0) -- (3,0) node[right] {$x$};
+	\draw[->] (0,-0.5) -- (0,3) node[above] {$y$};
 	
-	% Draw point representing vector v = (2, 3)
-	\filldraw[blue] (2,3) circle (2pt) node[above right] {$(2,3)$};
+	% Vector v
+	\draw[->,thick] (0,0) -- (1,2) node[right] {$\mathbf{v} = (1,2)$};
 	
-	% Identity Functor Id(R^2) mapping
-	\draw[->, red] (2,3) -- (4,3) node[midway, above] {$\text{Id}$};
+	% Vector u
+	\draw[->,thick] (0,0) -- (2,1) node[below right] {$\mathbf{u} = (2,1)$};
 	
-	% Double Dual Functor DD(R^2) mapping
-	\draw[->, green] (2,3) -- (2,1) node[midway, left] {$DD$};
+	% Dot product labels
+	\draw[dashed] (2,1) -- (1,2);
+	\node at (1.3,1.7) {$\mathbf{u} \cdot \mathbf{v} = 5$};
 	
-	% Evaluation Natural Transformation eta
-	\draw[->, blue, dotted] (2,3) to[out=180,in=90] (0,2) node[left] {$\eta_{\mathbb{R}^2}(v)$};
+	% Dual space transformation T
+	\draw[->,thick,blue] (0,3) -- (2,2) node[midway, above left, blue] {$T$};
+	\draw[blue,fill=blue] (2,2) circle (0.05);
+	
+	% Evaluation at T
+	\draw[->,thick,red] (0,2.8) -- (2,1.8) node[midway, above right, red] {$\eta_T$};
+	\draw[red,fill=red] (2,1.8) circle (0.05);
+	
+	% Double dual transformation T*
+	\draw[->,thick,green!70!black] (0,2) -- (2,1) node[midway, above left, green!70!black] {$T^*$};
+	\draw[green!70!black,fill=green!70!black] (2,1) circle (0.05);
+	
+	% Evaluation at T*
+	\draw[->,thick,purple] (0,1.8) -- (2,0.8) node[midway, above right, purple] {$\eta_{T^*}$};
+	\draw[purple,fill=purple] (2,0.8) circle (0.05);
 \end{tikzpicture}
+
+
 \newpage
 \section{Category Definitions}
 \subsection{Matrices over Commutative Rings}
