@@ -129,6 +129,8 @@ Consider $\mathbb{Z}$ and $GL_2(\Z)=\set{\begin{pmatrix}
 		\end{center}
 	\end{itemize}
 \end{itemize}
+
+\newpage
 \begin{figure}[h!]\centering
 	% https://tikzcd.yichuanshen.de/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZAJgBoAGAXVJADcBDAGwFcYkQBxAGQH0wAKAEoBKEAF9S6TLnyEUAFgrU6TVu0EA9YAB1teALbwx4ySAzY8BIouLKGLNohABlLboNGTUi7KJlbNPZqTtx8-M6iEt4yVijkSoGqjiCCXmbSlnLI8QEqDuzO4sowUADm8ESgAGYAThD6SPEgOBBIAIyJ+U66MDj0PKlRILX1SADMNC1IZHnBID19PIVDIw2ITVOIEyCM9ABGMIwAChm+TjVYpQAWOCCdc7r69DhXe1XAoWBi-LpoV1iRUyrdqTVqIGZBZKPZ6vd4AVW+v3+gOqdTWimaYIArPcodo-lg7jt9ocTj5YiALtdbmJKGIgA
 	\begin{tikzcd}
@@ -154,8 +156,155 @@ Consider $\mathbb{Z}$ and $GL_2(\Z)=\set{\begin{pmatrix}
 \end{tikzcd}
 \end{figure}
 \end{example}
+
+\newpage
+% https://tikzcd.yichuanshen.de/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZAFgBoAGAXVJADcBDAGwFcYkQA1EAX1PU1z5CKcqQAc1Ok1bsOAPWAAqbjz4gM2PASJjxkhizaJOCxctX9NQogCZSAVn3SjIAAY9JMKAHN4RUABmAE4QALZIoiA4EBE0jBAQaEQAjGKiAUxwMJKM9ABGMIwACgJawiBBWN4AFjggNAYyxgCSUAD6XLyBIeGIyTTRSP0g8Ym2AOzpmdlx+YUlVtrGWGDYsPVShuytbcDy5l0gwWFIdlExiGejSSgAnFOMWTlzxaXWy6tY6w3O2+17pmUKkOx16kUGfRoBTAUCQAFoAMyRXIFV6LcorNZsH5bYwAHTxoXoOGqeQCwFo3AJKwABBwCUS0HBogAKBnE0nkgDuVMJ9CZ0QJuTA3kYMBp7JJZIpvElnOAPIJQXoIrFAEpqWA6aYVDQ4NUsAE6pcQT0hgMLmdobDEIjIo0XAScDAAB44YAAJRgAEdmFggvAafQoFBBAQmDSAMYEZnKlY4OA0iBBGlwNAwSOGrCR1M4ILMSM4ZgBuC6kYvBZhjGfb4gaowYNIMDMRiMPUGo2nU0nS4W2Iga3wpE4pogJ2u90AOQgNMnxOLEYAsvyyyj5m8liBMV9sSB9YbjTZu71hhDIoPbcPy6jK2V2Nvaw72OO3cAAOIwMAwZWtgCes4IOE5yLH8y33TtbWIY9Tj7SEB0-G07VmG8N2rLENiffE8WdV8vV9f1A2DUMygjaNVjzeh40TZNU3TTMAmzXN80LYt4DAjtjThKC1FBfsIStBCh2RCtUPvGtd0wsc+SlclKXZAUIDZPE0ANeTmQgAkVKwJSiRkmU1TVDZwM4qDKG4IA
+\begin{tikzcd}
+	&  &   &  & V \arrow["Id_V"', loop, distance=2em, in=125, out=55] \arrow[lllldddddddd, "{\mathbf{v}\in V\mapsto(\mathbf{w}\mapsto\langle \mathbf{v},\mathbf{w}\rangle)\in V^{*}}" description, bend right, shift right=2] \arrow[rrrrdddddddd, "\mathbf{v}\mapsto(\phi\mapsto\phi(\mathbf{v}))" description, bend right, shift left=4] &  &  &  &                                                                                                                                                                                                                                                                                           \\
+	&  &   &  &                                                                                                                                                                                                                                                                                                                            &  &  &  &                                                                                                                                                                                                                                                                                           \\
+	&  &   &  &                                                                                                                                                                                                                                                                                                                            &  &  &  &                                                                                                                                                                                                                                                                                           \\
+	&  &   &  &                                                                                                                                                                                                                                                                                                                            &  &  &  &                                                                                                                                                                                                                                                                                           \\
+	&  &   &  &                                                                                                                                                                                                                                                                                                                            &  &  &  &                                                                                                                                                                                                                                                                                           \\
+	&  & ` &  &                                                                                                                                                                                                                                                                                                                            &  &  &  &                                                                                                                                                                                                                                                                                           \\
+	&  &   &  &                                                                                                                                                                                                                                                                                                                            &  &  &  &                                                                                                                                                                                                                                                                                           \\
+	&  &   &  &                                                                                                                                                                                                                                                                                                                            &  &  &  &                                                                                                                                                                                                                                                                                           \\
+	V^{*} \arrow["Id_{V^*}" description, loop, distance=2em, in=215, out=145] \arrow[rrrrrrrr, "\text{Requires additional constraints or specific structures}" description, bend right, shift right=2] \arrow[rrrruuuuuuuu, "\text{Generally Non-Natural}" description, bend right, shift left=4] &  &   &  &                                                                                                                                                                                                                                                                                                                            &  &  &  & V^{**} \arrow["Id_{V^{**}}" description, loop, distance=2em, in=35, out=325] \arrow[lllluuuuuuuu, "\text{No Natural Map}" description, bend right, shift right=2] \arrow[llllllll, "\text{Requires additional constraints or specific structures}" description, bend right, shift left=4]
+\end{tikzcd}
+\newpage
+\begin{example}[Evaluation Mapping as Natural Transformation]
+\ \begin{tcolorbox}
+\textbf{Definition} (\textit{Evaluation Map}) \ \begin{itemize}
+		\item Let $V,K$ be sets, and 
+		\item let $K^V$ be the set of all mappings from $V$ to $K$.
+	\end{itemize} The \textbf{evaluation mapping} for $K^V$ is the mapping $\mathsf{ev}:K^V\times V\to K$ defined by: \[
+	\mathsf{ev}(f,v):=f(v)
+	\] for $f\in K^V$ and $v\in V$.
+\end{tcolorbox}
+\noindent Consider a linear mapping \[
+	\phi:\R^2\to\R,\quad\phi(\textbf{v})=\phi(v_1,v_2)=3v_1-2v_2.
+	\] Then evaluation map $\mathsf{ev}:\R^{\R^2}\times\R^2\to \R$ ensure \[
+	\mathsf{ev}(\phi,(1,1))=\phi(1,1)=3\cdot 1-2\cdot 1 = 1.
+	\]
+\end{example}
+\begin{itemize}
+	\item[] \textbf{[ Category ]}
+	\begin{enumerate}
+		\item \textbf{Category of Vector Space} ($\mathsf{Vect}_K$)
+		\begin{itemize}
+			\item \textbf{Object}: \begin{itemize}
+				\item Vector Spaces over field $K$: $V, W, \cdots$
+				\item Dual Spaces: $V^*, W^*, \cdots$. Note that \[
+				V^*:=\set{\phi: V\to K\mid\phi\ \text{is linear functional}}
+				\]
+				\item Double dual Spaces: $V^{**}, W^{**}, \cdots$. Note that \[
+				V^{**}:=\set{\psi\in V^{**}\to K\mid\psi\ \text{is linear functional}}
+				\]
+			\end{itemize}
+			\item \textbf{Morphism}: Ring homomorphism $\phi:\Z\to \Z$
+		\end{itemize}
+		\item \textbf{Category of Groups} ($\mathsf{Grp}$)
+		\begin{itemize}
+			\item \textbf{Objects}: Groups $(GL_2(\Z),*)$ and $(\Z^\times,\times)$. Here `$*$' denotes matrix multiplication. Note that \[
+			\Z^\times=\set{1,-1}.
+			\]
+			\item \textbf{Morphisms}: Group homomorphisms \[
+			\sigma:GL_2(\Z)\to GL_2(\Z)\quad\text{and}\quad\tau:\Z^\times\to\Z^\times.
+			\] Note that $\tau:\set{\pm1}\to\set{\pm1}$
+		\end{itemize}
+	\end{enumerate}
+	\newpage
+	\item[] \textbf{[ Two Functors ]} Note that $\mathbf{GL}_2$ represents the functor, while $GL_2$ denotes the group.
+	\begin{enumerate}
+		\item \textbf{General Linear Group Functor} ($\mathbf{GL}_2:\mathsf{CRing}\to\mathsf{Grp}$)
+		\begin{itemize}
+			\item \textbf{On Object}: \[
+			\Z\mapsto GL_2(\Z)
+			\]
+			\item \textbf{On Morphism}: \[
+			\phi\mapsto\sigma=\mathbf{GL}_2(\phi)
+			\] It preserves invertibility.
+		\end{itemize}
+		\item \textbf{Unit Functor} ($\mathbf{U}:\mathsf{CRing}\to\mathsf{Grp}$)
+		\begin{itemize}
+			\item \textbf{On Object}: \[
+			\Z\mapsto \Z^{\times}=\set{\pm 1}
+			\]
+			\item \textbf{On Morphism}: \[
+			\phi\mapsto\tau=\mathbf{U}(\phi)
+			\] It preserves the unit property.
+		\end{itemize}
+	\end{enumerate}
+	\item \textbf{[ Natural Transformation: Determinant ]} The determinant \[
+	\fullfunction{\det_\Z}{GL_2(\Z)}{\Z^{\times}=\set{\pm 1}}{\begin{pmatrix}
+			a & b\\ c & d
+	\end{pmatrix}}{ad-bc=\det_\Z\begin{pmatrix}
+			a & b\\ c & d
+	\end{pmatrix}}
+	\] is a natural transformation between two functors, $\mathbf{GL}_2$ and $\mathbf{U}$.
+	\begin{itemize}
+		\item \textbf{Naturality Condition}: The following diagram commutes:
+		\begin{center}
+			\begin{tikzcd}
+				GL_2(\Z) \arrow[rr, "\eta_\Z=\det_\Z"] \arrow[dd, "\sigma=\mathbf{GL}_2(\phi)"] &  & \Z^{\times} \arrow[dd, "\tau=\mathbf{U}(\phi)"] \\
+				&  &                                           \\
+				GL_n(\Z) \arrow[rr, "\eta_\Z=\det_\Z"]                                    &  & \Z^{\times}                               
+			\end{tikzcd}
+		\end{center}
+	\end{itemize}
+\end{itemize}
 \newpage
 
+\begin{tikzpicture}[scale=2, >=stealth, vector/.style={thick,->}]
+	
+	% Draw the coordinate axes
+	\draw[->] (-1,0) -- (3,0) node[right] {$v_1$};
+	\draw[->] (0,-1) -- (0,2) node[above] {$v_2$};
+	
+	% Draw the projection line (scalar line) corresponding to the transformation direction
+	\draw[vector, blue] (0,0) -- (1.5,-1) node[right] {$(3,-2)$}; % Vector indicating transformation direction
+	\draw[dashed, thin] (-1,0.6667) -- (2,-1.3333) node[right] {Projection line};
+	
+	% Draw vectors and their projections
+	\foreach \x/\y in {1/1, 0.5/1.5, 2/0.5, 0.8/0.2}{
+		\pgfmathsetmacro{\t}{(3*\x - 2*\y)/(3*3 + 2*2)}
+		\pgfmathsetmacro{\px}{3*\t}
+		\pgfmathsetmacro{\py}{-2*\t}
+		\draw[vector] (0,0) -- (\x,\y);
+		\fill (\x,\y) circle(1pt);
+		\draw[vector, red] (\x,\y) -- (\px,\py);
+		\fill[red] (\px,\py) circle(1pt);
+	}
+	
+	% Labeling a typical vector and its projection
+	\node at (1,1) [above right] {$v$};
+	\node at (0.36, -0.24) [below left, red] {$\phi(v)$};
+	
+\end{tikzpicture}
+
+\begin{tikzpicture}[scale=1.5, >=stealth]
+	% Draw the coordinate axes
+	\draw[->] (-1,0) -- (4,0) node[right] {$v_1$};
+	\draw[->] (0,-1) -- (0,2) node[above] {$v_2$};
+	
+	% Draw a few vectors and their projections onto the x-axis
+	\foreach \x/\y in {3/1, 2/1.5, 1/0.5, 3/0} {
+		% Original vector
+		\draw[thick,->] (0,0) -- (\x,\y) node[at end, above] {$(\x,\y)$};
+		% Projection onto the x-axis
+		\draw[thick,->, red] (0,0) -- (\x,0) node[at end, below] {Projection: $(\x,0)$};
+		% Connection line to projection (dotted)
+		\draw[dotted] (\x,\y) -- (\x,0);
+	}
+\end{tikzpicture}
+
+\begin{tikzcd}[row sep=huge, column sep=huge]
+	V \arrow[r, "T"] \arrow[d, "(\cdot)^*", swap] & 
+	W \arrow[d, "(\cdot)^*"] \\
+	V^* \arrow[r, "T^*", swap] & 
+	W^* \\
+	V^{**} \arrow[r, "T^{**}"] \arrow[u, "(\cdot)^*", swap] & 
+	W^{**} \arrow[u, "(\cdot)^*"]
+\end{tikzcd}
 \begin{definition}[Vector Space and Dual Space]
 \ \begin{itemize}
 	\item Let $V$ be a finite-dimensional \emph{vector space} over field $\mathbb{K}$. That is, $V=K^n$.
