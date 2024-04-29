@@ -1,0 +1,15 @@
+%Tcolorbox
+\usepackage[most]{tcolorbox}
+\usepackage{varwidth}
+\tcbset{colback=white, arc=5pt}
+
+\newtcolorbox{defbox}[2][]{
+	enhanced,
+	colframe=defcolor, coltitle=white,
+	title={\bf #2},#1
+}
+\newtcolorbox{thmbox}[2][]{
+	enhanced,
+	colframe=thmcolor, coltitle=white,
+	title={\bf #2},#1
+}

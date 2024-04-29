@@ -1,0 +1,41 @@
+\section{Currying, Kleisli Category, Grothendieck Construction}
+\subsection{Currying}
+\begin{note}
+\[
+\begin{array}{rcl}
+	A^{B\times C}&\simeq &(A^C)^B \\
+	(f:B\times C\to A)&\substack{\mapsto\\ \mapsfrom} &\left(\fullfunction{g}{B}{[C\to A]}{b\in B}{g_b\in A^C}\right)
+\end{array}.
+\] Consider $f:X\times Y\to Z$. Then\begin{align*}
+	f:X\times Y\to Z&\implies f\in Z^{X\times Y} \\
+	&\implies f\in (Z^{Y})^X, \ie, x\in X\mapsto f_x\in Z^Y \\
+	&\implies f:X\to[Y\to Z].
+\end{align*}
+\end{note}
+%\begin{defbox}{Set of All Mappings}
+%\begin{definition}
+%	Let $S$ and $T$ be sets. Then \textbf{set of (all) mappings} from $S$ to $T$ is \[
+%	T^S:=\set{f\subseteq S\times T: f:S\to T\ \text{is a mappings}}.
+%	\]
+%\end{definition}
+%\end{defbox}
+
+\begin{lstlisting}
+def f1(x):
+return (x + 1, str(x) + "+1")
+
+def f2(x):
+return (x + 2, str(x) + "+2")
+
+def f3(x):
+return (x + 3, str(x) + "+3")
+
+def unit(x):
+	return (x, "Ops:")
+	
+def bind(t, f):
+	res = f(t[0])
+	return (res[0], t[1] + res[1] + ";")
+	
+print( bind(bind(bind(unit(x), f1), f2), f3) )
+\end{lstlisting}
