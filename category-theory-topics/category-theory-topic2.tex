@@ -22,13 +22,13 @@
 
 \begin{lstlisting}
 def f1(x):
-return (x + 1, str(x) + "+1")
+	return (x + 1, str(x) + "+1")
 
 def f2(x):
-return (x + 2, str(x) + "+2")
+	return (x + 2, str(x) + "+2")
 
 def f3(x):
-return (x + 3, str(x) + "+3")
+	return (x + 3, str(x) + "+3")
 
 def unit(x):
 	return (x, "Ops:")
@@ -39,3 +39,9 @@ def bind(t, f):
 	
 print( bind(bind(bind(unit(x), f1), f2), f3) )
 \end{lstlisting}
+
+\begin{tikzcd}
+	X \arrow[r, "f"] \arrow[rr, "g \circ f", bend left=50] & TY \arrow[r, "Tg"] & T^2Z \arrow[r, "\mu_Z"] & TZ
+\end{tikzcd}
+
+\newpage
