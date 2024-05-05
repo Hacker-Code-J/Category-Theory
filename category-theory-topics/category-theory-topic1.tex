@@ -361,25 +361,39 @@ $v \in V$ and $\phi \in V^*$. This map is a natural isomorphism, meaning it comm
 \ \begin{itemize}
 	\item[] \textbf{[ Category ]}
 	\begin{enumerate}
-		\item \textbf{Category of Finite Vector Spaces} ($\mathsf{FinVect}_K$)
+		\item[] \textbf{Category of Finite Vector Spaces} ($\mathsf{Vect}_K$)
 		\begin{itemize}
 			\item \textbf{Objects}: 
 			\begin{itemize}
-				\item Vector space $V=K^n$ over a field $K$
-				\item Dual Space $V^*=\set{\phi\in K^{V}:\phi\ \text{is linear transformation}}$.
+				\item Vector space $V$ over a field $K$
+				\item Dual Space \[
+				V^*=\set{\phi\in K^{V}:\phi\ \text{is linear transformation}}\subseteq(V\times K).
+				\]
+%				\item Double Dual Space \[
+%				V^{**}=\set{\Phi\in K^{V^*}:\Phi\ \text{is linear transformation}}\subseteq (V^*\times K).
+%				\]
 			\end{itemize}
 			\item \textbf{Morphisms}:  
 			\begin{itemize}
-				\item Linear Transformation $T:V(=K^n)\to W(=K^m)$
-				\item Dual Transformation $T^*:W^*\to V^*$ defined by \[
-				T^*f:=f\circ T\quad\text{for all}\quad f\in W*.
-				\] Sometimes we denote $V^*:=\mathcal{L}(V,K)$. Note that \begin{itemize}
-					\item $(T^*f)\textbf{v}=f(T\textbf{v})$ for all $\textbf{v}\in V$;
-					\item $f\in W^*\implies T^*f\in V^*$;
-					\item $T^*$ is linear.
+				\item $f:V\to W$
+				\item $f^*:W^*\to V^*$ defined by \[
+				f^*(\phi_W)=(\phi_W\circ f)\in V^*
+				\] for $\phi_W\in W^*$.
+				\item Let $f:V\to W$ and $g:W\to U$.
+				\item $f^*:W^*\to V^*$, $g^*:U^*\to W^*$
+				\item $\mathbf{DualVec}(g\circ f)=\mathbf{DualVec}(f)\circ\mathbf{DualVec}(g)=f^*\circ g^*$
 				\end{itemize}
 			\end{itemize}
-		\end{itemize}
+		\begin{center}
+		% https://tikzcd.yichuanshen.de/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRADUQBfU9TXfIRRkALFVqMWbAOrdeIDNjwEiAJnLj6zVog4BeADoGAtnRwALAEYAzYAEkoXABTsAlHL5LBa0mOpapXWlDEzMrWwdnaXceTwEVFBENf0kdDgA9ACoQ0wsbYAARJkZ2GABjZzcPBX5lIWQkvwltGSycsPyikvKomPlFePqyVU1UtmqBup8RlJbdCdrvRNIZ5sCQbnEYKABzeCJQawAnCGMkMhAcCCQARln16xBqBjpLGAYABUWEkAYYaxw1WOpyQ6ku10QAGZ7mlrO08hFHE5rH1DiczogAKzUK5IJJrWFtIy5cKFYoMUoVZHuZ6vd5fLw-I5YHbmQGxEDAjEANhxEIA7NQ4OYsACkABaACczywYDSUAgOBw2yevzpn2+QhAsuwsFVATSxI6iK4QPR5z5oJlcrYCqVKuobzAUCQkIuLzeGsZWp1WD1MLYRoR9kcZpBiDu4Nd1vliuVLsdMGdErdtM9DMGbF9-oJgdCwciYZ5lsQAA4hSKxYhpb9ZbH7Qnc7og6SuhSeqqPfTNVmwLrWByuRao4h8Qw67a4w6QE6XaOa8LRYDEOKwQa8yTOuTKaa093vb3+0XbiXsTOk3PxSIa+Obbo7fHVYuq2Cu17M7ps6wA83863tx2g7mogYK4qOP4gEYMA4HQAD67B6AA-MeUKnhBUEwbBwTIVwFBcEAA
+		\begin{tikzcd}
+			V \arrow[dddd, "f"] \arrow[rr, "\mathbf{Id}" description, dotted, bend left] \arrow[rrrr, "\mathbf{DualVec}" description, dotted, bend left=49, shift left=2] &  & V=\mathbf{Id}(V) \arrow[dddd, "f=\mathbf{Id}(f)"] \arrow[rr, "\eta_V=?"] &  & V^*=\mathbf{DualVec}(V)                                          \\
+			&  &                                                                          &  &                                                                  \\
+			{} \arrow[rr, "\mathbf{Id}" description, dotted, shift left=9] \arrow[rrrr, "\mathbf{DualVec}" description, dotted, shift right=9]                            &  & {}                                                                       &  & {}                                                               \\
+			&  &                                                                          &  &                                                                  \\
+			W \arrow[rr, "\mathbf{Id}" description, dotted, bend right] \arrow[rrrr, "\mathbf{DualVec}" description, dotted, bend right=49, shift right=2]                &  & W=\mathbf{Id}(W) \arrow[rr, "\eta_W=?"]                                  &  & W^*=\mathbf{DualVec}(W) \arrow[uuuu, "f^*=\mathbf{DualVec}(f)"']
+		\end{tikzcd}
+	\end{center}
 	\end{enumerate}
 	\item[] \textbf{[ Functor ]}
 	\begin{enumerate}
