@@ -11,8 +11,11 @@ def unit(x):
     return (x, "Ops:")
 
 def bind(t, f):
+    print(f't0:{t[0]}, t1:{t[1]}')
     res = f(t[0])
+    print(f'res0:{res[0]}, res1:{res[1]}')
     return (res[0], t[1] + res[1] + ";")
+
 
 # Direct calls setup
 def direct_calls(x):

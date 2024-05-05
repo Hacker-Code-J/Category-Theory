@@ -1,0 +1,144 @@
+\documentclass[11pt,openany]{article}
+
+\input{category-theory-note-setup}
+\input{../category-theory-setup-tcolorbox}
+% Header and footer formatting
+\pagestyle{fancy}
+\fancyhead{}
+\fancyhf{}
+\rhead{\textcolor{TealBlue2}{\textbf{Category-Theory-Note}}}%\rule{3cm}{0.4pt}}
+\lhead{\textcolor{TealBlue2}{\textbf{Lecture-Note 1}}}
+% Define footer
+\newcommand{\footer}[1]{
+\begin{flushright}
+	\vspace{2em}
+%	\includegraphics[width=2cm]{school_logo.jpg} \\
+	\vspace{1em}
+	\textcolor{TealBlue2}{\small\textbf{#1}}
+\end{flushright}
+}
+%\rfoot{\large Department of Information Security, Cryptogrphy and Mathematics, Kookmin Uni.\includegraphics[height=1.5cm]{school_logo.jpg}}
+\fancyfoot{}
+\fancyfoot[C]{-\thepage-}
+
+\newcommand{\ie}{\textnormal{i.e.}}
+\newcommand{\rsa}{\mathsf{RSA}}
+\newcommand{\rsacrt}{\mathsf{RSA}\textendash\mathsf{CRT}}
+\newcommand{\inv}[1]{#1^{-1}}
+
+\usepackage{amsthm}
+\newtheorem{axiom}{Axiom}[section]
+\newtheorem{theorem}{Theorem}
+\newtheorem*{theorem*}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem*{corollary*}{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem*{lemma*}{Lemma}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\newtheorem*{definition*}{Definition}
+\newtheorem{remark}{Remark}
+\newtheorem{exercise}{Exercise}[section]
+
+%New Command
+%\newcommand{\set}[1]{\left\{#1\right\}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\nbhd}{\mathcal{N}}
+\newcommand{\Log}{\operatorname{Log}}
+\newcommand{\Arg}{\operatorname{Arg}}
+\newcommand{\pv}{\operatorname{P.V.}}
+
+\newcommand{\of}[1]{\left( #1 \right)} 
+%\newcommand{\abs}[1]{\left\lvert #1 \right\rvert}
+%\newcommand{\norm}[1]{\left\| #1 \right\|}
+
+\newcommand{\sol}{\textcolor{magenta}{\bf Sol}}
+\newcommand{\conjugate}[1]{\overline{#1}}
+
+\newcommand{\res}{\operatorname{res}}
+\DeclareMathOperator*{\Res}{\operatorname{Res}}
+
+\renewcommand{\Re}{\operatorname{Re}}
+\renewcommand{\Im}{\operatorname{Im}}
+
+\newcommand{\cyclic}[1]{\langle #1 \rangle}
+\newcommand{\uniform}{\overset{\$}{\leftarrow}}
+
+\input{category-theory-note-command}
+
+\setstretch{1.25}
+\begin{document}
+\pagenumbering{arabic}
+\begin{center}
+	\huge\textbf{Category Theory}\\
+	\vspace{0.5em}
+	\normalsize{\today}\\
+	\vspace{0.5em}
+	\large\textbf{Ji, Yong-hyeon}\\
+	\vspace{0.5em}
+\end{center}
+
+\begin{defbox}{Category}
+	A \textbf{category} $\mathcal{C}$ consists of 
+	\begin{itemize}
+		\item a class $\mathcal{C}_0=\obj{\mathcal{C}}$ of \textbf{objects} $X,Y,Z,\dots$
+		\item a class $\mathcal{C}_1=\mathsf{Mor}(\mathcal{C})$ of \textbf{morphisms} (or \textbf{arrow}) $f,g,h,\dots$ between its objects
+		\begin{itemize}
+			\item for every morphism $f$, an object $\dom{f}$ (called its \textbf{source} or \textbf{domain}), and an object $\cdm{f}$ (called its \textbf{target} or \textbf{codomain})
+			\item for every pair of morphisms $f$ and $g$, where $\cdm{f}=\dom{g}$, a morphism $g\circ f$, called \textbf{composite} (also written $gf$ or some times $f;g$)
+			\item for every object $X$, a morphism $\mathsf{id}_X$ (or $1_X$), called the \textbf{identity morphism} on $X$;
+		\end{itemize}
+	\end{itemize}
+	The morphisms of $\mathcal{C}$ satisfy the following property:
+	\begin{itemize}
+		\item[(C1)] (Composition) 
+		\begin{align*}
+			X,Y,Z\in\obj{\mathcal{C}}\implies &[f\in\morphism{X,Y},g\in\morphism{Y,Z},\cdm{f}=\dom{g}\\
+			&\implies \exists(g\circ f)\in\morphism{X,Z}]
+		\end{align*}
+		\item[(C2)] (Identity)
+		\begin{align*}
+			X\in\obj{\mathcal{C}}\implies&\exists\mathsf{id}_X\in\morphism{X,X}:\\
+			&[Y\in\obj{\mathcal{C}},f\in\morphism{X,Y},g\in\morphism{Y,Z}\\
+			&\implies f\circ\mathsf{id}_X=f, \mathsf{id}_X\circ g=g]
+		\end{align*}
+		\item[(C3)] (Associativity) \[
+		f,g,h\in\mathsf{Mor}(\mathcal{C})\implies f\circ(g\circ h)=(f\circ g)\circ h.
+		\]
+	\end{itemize}
+\end{defbox}
+\newpage
+\begin{remark}
+	To describe a metacategory it is necessary to specify:
+	\begin{itemize}
+		\item The collection $\obj{\mathcal{C}}$
+		of objects;
+		\item The collection $\mathsf{Mor}(\mathcal{C})$ of morphisms;
+		\item For each object $X$, an identity morphism $\mathsf{id}_X:X\to X$;
+		\item For every appropriate pair of morphisms $f,g$, the composite morphism $g\circ f$.
+	\end{itemize}
+	\adjustbox{scale=1.25, center}{
+	\begin{tikzcd}
+		X \arrow[rr, "f"] \arrow[rrdd, "g\circ f" description] \arrow["\mathsf{id}_X"', loop, distance=2em, in=215, out=145] &  & Y \arrow[dd, "g"] \arrow["\mathsf{id}_Y"', loop, distance=2em, in=35, out=325] \\
+		&  &                                                                      \\
+		&  & Z \arrow["\mathsf{id}_Z"', loop, distance=2em, in=305, out=235]               
+	\end{tikzcd}}
+\end{remark}
+
+\footer{Department of Information Security, Cryptology and Mathematics\\
+	College of Science and Technology\\
+	Kookmin University \\
+	Seoul, Republic of Korea}
+
+\newpage
+\input{category-theory-note-ref}
+%\bibliography{category-theory-note-ref}
+%\bibliographystyle{abbrv}
+\end{document}
