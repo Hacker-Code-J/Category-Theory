@@ -21,26 +21,12 @@
 \fancyfoot{}
 \fancyfoot[C]{-\thepage-}
 
+\input{category-theory-note-thm}
+
 \newcommand{\ie}{\textnormal{i.e.}}
 \newcommand{\rsa}{\mathsf{RSA}}
 \newcommand{\rsacrt}{\mathsf{RSA}\textendash\mathsf{CRT}}
 \newcommand{\inv}[1]{#1^{-1}}
-
-\usepackage{amsthm}
-\newtheorem{axiom}{Axiom}[section]
-\newtheorem{theorem}{Theorem}
-\newtheorem*{theorem*}{Theorem}
-\newtheorem{proposition}[theorem]{Proposition}
-\newtheorem{corollary}{Corollary}[theorem]
-\newtheorem*{corollary*}{Corollary}
-\newtheorem{lemma}[theorem]{Lemma}
-\newtheorem*{lemma*}{Lemma}
-
-\theoremstyle{definition}
-\newtheorem{definition}{Definition}
-\newtheorem*{definition*}{Definition}
-\newtheorem{remark}{Remark}
-\newtheorem{exercise}{Exercise}[section]
 
 %New Command
 %\newcommand{\set}[1]{\left\{#1\right\}}
@@ -71,6 +57,8 @@
 \newcommand{\cyclic}[1]{\langle #1 \rangle}
 \newcommand{\uniform}{\overset{\$}{\leftarrow}}
 
+\newcommand{\from}{\leftarrow}
+
 \input{category-theory-note-command}
 
 \setstretch{1.25}
@@ -85,53 +73,193 @@
 	\vspace{0.5em}
 \end{center}
 
+\section{Definition}
 \begin{defbox}{Category}
 	A \textbf{category} $\mathcal{C}$ consists of 
 	\begin{itemize}
-		\item a class $\mathcal{C}_0=\obj{\mathcal{C}}$ of \textbf{objects} $X,Y,Z,\dots$
-		\item a class $\mathcal{C}_1=\mathsf{Mor}(\mathcal{C})$ of \textbf{morphisms} (or \textbf{arrow}) $f,g,h,\dots$ between its objects
+		\item A class $\obj{\mathcal{C}}$ of \textbf{objects} $A,B,C,\dots$ in $\category$
+		\item For all (ordered) pairs of objects $X,Y\in\obj{\category}$, a class $\homo{A,B}$ of \textbf{maps} or \textbf{arrow} called \textbf{morphisms} from $A$ to $B$, called the \textbf{homo-set} of morphisms from $A$ to $B$. If $f\in\homo{A,B}$, we write $f:A\to B$.
 		\begin{itemize}
 			\item for every morphism $f$, an object $\dom{f}$ (called its \textbf{source} or \textbf{domain}), and an object $\cdm{f}$ (called its \textbf{target} or \textbf{codomain})
 			\item for every pair of morphisms $f$ and $g$, where $\cdm{f}=\dom{g}$, a morphism $g\circ f$, called \textbf{composite} (also written $gf$ or some times $f;g$)
 			\item for every object $X$, a morphism $\mathsf{id}_X$ (or $1_X$), called the \textbf{identity morphism} on $X$;
 		\end{itemize}
-	\end{itemize}
-	The morphisms of $\mathcal{C}$ satisfy the following property:
-	\begin{itemize}
-		\item[(C1)] (Composition) 
-		\begin{align*}
-			X,Y,Z\in\obj{\mathcal{C}}\implies &[f\in\morphism{X,Y},g\in\morphism{Y,Z},\cdm{f}=\dom{g}\\
-			&\implies \exists(g\circ f)\in\morphism{X,Z}]
-		\end{align*}
-		\item[(C2)] (Identity)
-		\begin{align*}
-			X\in\obj{\mathcal{C}}\implies&\exists\mathsf{id}_X\in\morphism{X,X}:\\
-			&[Y\in\obj{\mathcal{C}},f\in\morphism{X,Y},g\in\morphism{Y,Z}\\
-			&\implies f\circ\mathsf{id}_X=f, \mathsf{id}_X\circ g=g]
-		\end{align*}
-		\item[(C3)] (Associativity) \[
-		f,g,h\in\mathsf{Mor}(\mathcal{C})\implies f\circ(g\circ h)=(f\circ g)\circ h.
-		\]
+		\item For any three objects $A,B,C\in\obj{\category}$, a binary operation, \[
+		\fullfunction{\circ}{\homo{A,B}\times\homo{B,C}}{\homo{A,C}}{(f,g)}{g\circ f},
+		\] called \textbf{composition}, such that,
+		\begin{itemize}
+			\item (\textit{associativity}) \[
+			f\in\homo{A,B},g\in\homo{B,C},h\in\homo{C,D}\implies h\circ(g\circ f)=(h\circ g)\circ f;
+			\]
+			\item (\textit{identity}) \begin{align*}
+				X\in\obj{\mathcal{C}}\implies&\exists\mathsf{id}_X\in\homo{X,X}\ \text{such that}\\
+				&[f\in\homo{A,X},g\in\homo{X,B}\\
+				&\implies \id_X\circ f=f, g\circ\mathsf{id}_X=g]
+			\end{align*}
+		\end{itemize}
 	\end{itemize}
 \end{defbox}
 \newpage
 \begin{remark}
-	To describe a metacategory it is necessary to specify:
-	\begin{itemize}
-		\item The collection $\obj{\mathcal{C}}$
-		of objects;
-		\item The collection $\mathsf{Mor}(\mathcal{C})$ of morphisms;
-		\item For each object $X$, an identity morphism $\mathsf{id}_X:X\to X$;
-		\item For every appropriate pair of morphisms $f,g$, the composite morphism $g\circ f$.
-	\end{itemize}
-	\adjustbox{scale=1.25, center}{
-	\begin{tikzcd}
-		X \arrow[rr, "f"] \arrow[rrdd, "g\circ f" description] \arrow["\mathsf{id}_X"', loop, distance=2em, in=215, out=145] &  & Y \arrow[dd, "g"] \arrow["\mathsf{id}_Y"', loop, distance=2em, in=35, out=325] \\
-		&  &                                                                      \\
-		&  & Z \arrow["\mathsf{id}_Z"', loop, distance=2em, in=305, out=235]               
+	\ \\ \adjustbox{scale=1.25, center}{
+		\begin{tikzcd}
+			A \arrow[rr, "f"] \arrow[rrdd, "g\circ f" description] \arrow["\mathsf{id}_A"', loop, distance=2em, in=215, out=145] &  & B \arrow[dd, "g"] \arrow["\mathsf{id}_B"', loop, distance=2em, in=35, out=325] \\
+			&  &                                                                      \\
+			&  & C \arrow["\mathsf{id}_C"', loop, distance=2em, in=305, out=235]               
 	\end{tikzcd}}
+	To describe a acategory it is necessary to specify:
+	\begin{itemize}
+		\item (Objects) $\obj{\category}=\set{A,B,C,\dots}$
+		\item (Morphisms) $\homo{A,B}=\set{f,g,\dots}$; $\homo{A,B}\neq\homo{B,A}$
+		\item (Composition) \\ \adjustbox{scale=1.25, center}{
+			\begin{tikzcd}
+				A \arrow[rr, "f"]            &  & B \arrow[rr, "g"] &  & C \\
+				A \arrow[rrrr, "h=g\circ f"] &  &                   &  & C
+		\end{tikzcd}}
+		\item (Identity) \[
+		\id_A:A\to A
+		\]
+		\begin{itemize}
+			\item $f\circ\id_A=f$
+			\item $\id_A\circ f=f$
+		\end{itemize}
+	\end{itemize}
 \end{remark}
 
+\vfill
+\section{Examples}
+
+\begin{example}[Trivial Category]
+\ \begin{itemize}
+	\item $\obj{\category}=\set{A}$
+	\item $\homo{A,A}=\set{\id_A}$
+\end{itemize}
+\adjustbox{scale=1.25,center}{
+\begin{tikzcd}
+	A \arrow["\mathsf{id}_A"', loop, distance=2em, in=35, out=325]
+\end{tikzcd}}
+\end{example}
+
+\begin{example}
+	\ \begin{itemize}
+		\item $\obj{\category}=\set{A,B}$
+		\item $\homo{A,B}=\set{f}$
+		\item $\homo{B,A}=\emptyset$
+	\end{itemize}
+	\adjustbox{scale=1.25,center}{
+		\begin{tikzcd}
+			A \arrow[r, "f"] & B
+	\end{tikzcd}}
+\end{example}
+
+\begin{example}
+	Let $(G,*)$ be a group. \begin{itemize}
+		\item $\obj{\category}=\set{X}$
+		\item $\homo{X,X}=\set{G}$
+		\item Define $g\circ f:=g*f$
+	\end{itemize}
+\end{example}
+
+\begin{example}
+\ \begin{itemize}
+	\item \textbf{Set};\quad $$\text{Set}\xrightarrow[\text{Function}]{}\text{Set}$$
+	\item \textbf{Grp};\quad $$\text{Group}\xrightarrow[\text{Homomorphism}]{}\text{Group}$$
+	\item \textbf{Top};\quad $$\text{Topological Space}\xrightarrow[\text{Continuous Map}]{}\text{Topological Space}$$
+	\item \textbf{Vect}$_K$;\quad $$\text{Vector Space}\xrightarrow[\text{Linear Transformation}]{}\text{Vector Space}$$
+\end{itemize}
+\end{example}
+
+\newpage
+\begin{example}
+	\ \begin{itemize}
+		\item 
+		$f:x\to y$ if and only if $x\leq y$\\
+		\adjustbox{scale=1.25, center}{
+			\begin{tikzcd}
+				x \arrow[rr, "f"]            &  & y \arrow[rr, "g"] &  & z \\
+				x \arrow[rrrr, "h"] &  &                   &  & z
+		\end{tikzcd}}
+		\item $\id_x:x\to x$ if and only if $x\leq x$
+	\end{itemize}
+	\[
+	\begin{array}{c}
+		(\R,\leq) \\ \text{Real Number}\xrightarrow[\text{Ordering}]{}\text{Real Number}
+	\end{array}
+	\]
+\end{example}
+
+\vfill
+\section{Product and Dual Categories}
+
+\subsection{Product Categories}
+\[
+\mathcal{C}\times\mathcal{D}
+\]
+\begin{align*}
+\obj{(\mathcal{C}\times\mathcal{D})}&=\obj{\mathcal{C}}\times\obj{\mathcal{D}}\\
+\mathsf{hom}_{\mathcal{C}\times\mathcal{D}}((A,B),(A',B'))&=\mathsf{hom}_\category(A,A')\times\mathsf{hom}_{\mathcal{D}}(B,B')
+\end{align*}
+\[\begin{array}{cc}
+	\mathcal{C} &\mathcal{D} \\ A\xrightarrow{f}A' & B\xrightarrow{g}B'
+\end{array}\]
+\[\begin{array}{c}
+	\mathcal{C} \times\mathcal{D} \\ (A,B)\xrightarrow{(f,g)}(A',B')
+\end{array}\]
+
+\subsection{Dual Categories}
+\[\begin{array}{cc}
+	\category & \mathcal{C}^\op \\ A\to B & A\from B
+\end{array}\]
+
+\newpage
+\section{Functors}
+\begin{align*}
+	F:\category&\to\mathcal{D}\\
+	F:\obj{\category}&\to\obj{\mathcal{D}}\\
+	F:\homo{\category}&\to\homo{\mathcal{D}}\\
+\end{align*}
+
+\[
+\fullfunction{F}{\category}{\mathcal{D}}{A}{F(A)}
+\]
+\adjustbox{scale=1.25,center}{
+\begin{tikzcd}
+	A \arrow[rr, "f"]        & {} \arrow[d, maps to] & B    \\
+	F(A) \arrow[rr, "F(f)"'] & {}                    & F(B)
+\end{tikzcd}}
+
+\newpage
+\section{Natural Transformation}
+\begin{itemize}
+	\item Let \[
+	\begin{tikzcd}
+		\mathcal{C} \arrow[r, "F", shift left] \arrow[r, "G"', shift right] & \mathcal{D}
+	\end{tikzcd}
+	\] be categories and functors.
+	\item A map 
+	% https://tikzcd.yichuanshen.de/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBoBGAXVJADcBDAGwFcYkQAdDgW3pwAsAxk2ABhAL4hxpdJlz5CKAEwVqdJq3ZdeA4Y2AARSdNnY8BIuVLE1DFm0QgpMkBjMLLpJbY0On4tRgoAHN4IlAAMwAnCG4kMhAcCCQrEAAjGDAoJAA2BLtNRwAxEBo4fiwInCQAWgBWGkZ6DMYABTlzRRAsMGxYZ0iYuMQEpJSaDKzavJoCvwBxUpByyurEBpAmlvb3C0cevrYTEGjYpBVE5MQAZkaevygIZjTGNhp+GHpsxDBmRkYaDh6FhGOxIGA3ptmjA2h0PPtelh+rNfFoODAgVJKOIgA
+	\adjustbox{scale=1.25,center}{\begin{tikzcd}
+		& {} \arrow[dd, "\eta" description, Rightarrow] &             \\
+		\mathcal{C} \arrow[rr, "F" description, bend left=60, shift left=5] \arrow[rr, "G" description, bend right=60, shift right=5] &                                               & \mathcal{D} \\
+		& {}                                            &            
+	\end{tikzcd}}
+	is a natural transformation
+\end{itemize}
+% https://tikzcd.yichuanshen.de/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBoBGAXVJADcBDAGwFcYkQANEAX1PU1z5CKAEyli1Ok1bsAYgAoOASh58QGbHgJExIyQxZtEIAOKKVvfpqE6K+6UZA9JMKAHN4RUADMAThABbJHIaHAgkMSlDdgAdGJgcegB9LksQP0CkMhAw4JpGLDBHKAgcHFcQGgMZY1lVH38gxGzcxEjqxxNKkAKi9hKyivz6ACMYRgAFAS1hEF8sNwALHHr0xqzQ8MQAZnzC4ohmEcY2GkWYeigkMGZGRlD6LEZ2SD6qh1j4xO7GUfGp6zaYyFbCwZzcIA
+\adjustbox{scale=1.25,center}{\begin{tikzcd}
+	&  & F(A)\in\obj{\mathcal{D}} \arrow[dd, "\eta_A"] \\
+	A\in\obj{\category} \arrow[rru, "F", dotted] \arrow[rrd, "G"', dotted] \arrow[rr, "\eta" description, Rightarrow] &  & {}                        \\
+	&  & G(A)\in\obj{\mathcal{D}}                  
+\end{tikzcd}}
+
+% https://tikzcd.yichuanshen.de/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRAEEQBfU9TXfIRRkATFVqMWbAELdeIDNjwEiI8uPrNWiEADEAFOwCUcvksFEALOuqapOgOKGTPMwJUo1Y25O1790i7yiu5CyNbeElpsToGmCvzKYQDMNlH2IPEhSUSpkXZ+3OIwUADm8ESgAGYAThAAtkhkIDgQSACMPtE6VfG1DUhqLW2I1ul+BlVB1XWNiKnDSACsXRlOU32zg9StSAsFbAA6hzA4dAD6nNQMdABGMAwACokWOjVYpQAWOJsDozsjFbjI4nM7nWSuED9OZDXaIIEMLBgPxQOhwT4lEDXO4PZ7mDwgJHYWBY4E6fTHGAADywcBwcAAhEYAPy-ObNOFDRHIthQCA4HCY1YTUk3e5PF4EolYEmQ6EdAFIMYHHS6UVIlH8wVQUU4iX4oSEsDE1hyraIDkjBb3MA6xAANma3M1AqFZJADl14rxoTY0tl8nliE6i3h1w1vK1bptdoAtI7hTEvbjJYb-abA+bLUh7dQY0qAJzhnk6PlMW4MVjY72pv3GmVV92Us6kjF0O1gJgMBg7OhYBhsSA8s1-ENwgDseZgtqQscsRZAzsj5crrZg7aQne7vf7g4IjbFKYNdZNpJVIGbdCKXCAA
+\adjustbox{scale=1.25,center}{\begin{tikzcd}
+		A \arrow[dd, "f"] \arrow[rr, "F" description, dotted] \arrow[rrrr, "G" description, dotted, bend left=60] \arrow[rrr, "\eta" description, Rightarrow, bend left=49] &  & F(A) \arrow[dd, "F(f)"] \arrow[rr, "\eta_A"'] \arrow[rrdd, "(\exists!)?" description, dashed] & {} & G(A) \arrow[dd, "G(f)"] \\
+		&  &                                                                                               &    &                         \\
+		B \arrow[rr, "F" description, dotted] \arrow[rrrr, "G" description, dotted, bend right=60] \arrow[rrr, "\eta" description, Rightarrow, bend right=49]               &  & F(B) \arrow[rr, "\eta_B"]                                                                     & {} & G(B)                   
+\end{tikzcd}}
+
+\newpage
 \footer{Department of Information Security, Cryptology and Mathematics\\
 	College of Science and Technology\\
 	Kookmin University \\
