@@ -22,43 +22,6 @@
 \fancyfoot[C]{-\thepage-}
 
 \input{category-theory-note-thm}
-
-\newcommand{\ie}{\textnormal{i.e.}}
-\newcommand{\rsa}{\mathsf{RSA}}
-\newcommand{\rsacrt}{\mathsf{RSA}\textendash\mathsf{CRT}}
-\newcommand{\inv}[1]{#1^{-1}}
-
-%New Command
-%\newcommand{\set}[1]{\left\{#1\right\}}
-\newcommand{\N}{\mathbb{N}}
-\newcommand{\Z}{\mathbb{Z}}
-\newcommand{\Q}{\mathbb{Q}}
-\newcommand{\R}{\mathbb{R}}
-\newcommand{\C}{\mathbb{C}}
-\newcommand{\F}{\mathbb{F}}
-\newcommand{\nbhd}{\mathcal{N}}
-\newcommand{\Log}{\operatorname{Log}}
-\newcommand{\Arg}{\operatorname{Arg}}
-\newcommand{\pv}{\operatorname{P.V.}}
-
-\newcommand{\of}[1]{\left( #1 \right)} 
-%\newcommand{\abs}[1]{\left\lvert #1 \right\rvert}
-%\newcommand{\norm}[1]{\left\| #1 \right\|}
-
-\newcommand{\sol}{\textcolor{magenta}{\bf Sol}}
-\newcommand{\conjugate}[1]{\overline{#1}}
-
-\newcommand{\res}{\operatorname{res}}
-\DeclareMathOperator*{\Res}{\operatorname{Res}}
-
-\renewcommand{\Re}{\operatorname{Re}}
-\renewcommand{\Im}{\operatorname{Im}}
-
-\newcommand{\cyclic}[1]{\langle #1 \rangle}
-\newcommand{\uniform}{\overset{\$}{\leftarrow}}
-
-\newcommand{\from}{\leftarrow}
-
 \input{category-theory-note-command}
 
 \setstretch{1.25}
@@ -101,28 +64,68 @@
 \end{defbox}
 \newpage
 \begin{remark}
-	\ \\ \adjustbox{scale=1.25, center}{
-		\begin{tikzcd}
-			A \arrow[rr, "f"] \arrow[rrdd, "g\circ f" description] \arrow["\mathsf{id}_A"', loop, distance=2em, in=215, out=145] &  & B \arrow[dd, "g"] \arrow["\mathsf{id}_B"', loop, distance=2em, in=35, out=325] \\
-			&  &                                                                      \\
-			&  & C \arrow["\mathsf{id}_C"', loop, distance=2em, in=305, out=235]               
-	\end{tikzcd}}
+%	\ \\ \adjustbox{scale=1, center}{
+%		\begin{tikzcd}
+%			A \arrow[rr, "f"] \arrow[rrdd, "g\circ f" description] \arrow["\mathsf{id}_A"', loop, distance=2em, in=215, out=145] &  & B \arrow[dd, "g"] \arrow["\mathsf{id}_B"', loop, distance=2em, in=35, out=325] \\
+%			&  &                                                                      \\
+%			&  & C \arrow["\mathsf{id}_C"', loop, distance=2em, in=305, out=235]               
+%	\end{tikzcd}}
 	To describe a acategory it is necessary to specify:
 	\begin{itemize}
-		\item (Objects) $\obj{\category}=\set{A,B,C,\dots}$
-		\item (Morphisms) $\homo{A,B}=\set{f,g,\dots}$; $\homo{A,B}\neq\homo{B,A}$
-		\item (Composition) \\ \adjustbox{scale=1.25, center}{
+		\item (Objects) $\obj{\category}=\set{A,B,C,D,E\dots}$\\
+		\vspace{8pt}
+		\begin{figure}[h!]\centering
+			\begin{tikzcd}[remember picture, cells={nodes={draw=none}}]
+				| [alias=A] | A &  & B &  & D \\
+				&  &   &  &   \\
+				&  & C &  & | [alias=E] | E
+			\end{tikzcd}
+			
+			\begin{tikzpicture}[overlay, remember picture]
+				% Calculate bounding box coordinates
+				\coordinate (TopLeft) at ($(A.north west) + (-0.5,0.5)$);
+				\coordinate (BottomRight) at ($(E.south east) + (0.5,-0.5)$);
+				% Draw rounded rectangle
+				\draw[rounded corners, thick, red] (TopLeft) rectangle (BottomRight);
+				% Label the rectangle
+				\node at ($(TopLeft)!0.5!(BottomRight) + (0,1.75)$) [above] {$\category$};
+			\end{tikzpicture}
+		\end{figure}
+		
+		\item (Morphisms) $\homo{A,B}=\set{f,f',\dots}$; $\homo{A,B}\neq\homo{B,A}$\\
+		\vspace{8pt}
+		\begin{figure}[h!]\centering
+			\begin{tikzcd}[remember picture, cells={nodes={draw=none}}]
+				| [alias=A] | A \arrow[rr, "f"] \arrow[rrdd, "h"] \arrow[rr, "f'", bend left=49] \arrow["\mathsf{id}_A"', loop, distance=2em, in=215, out=145] \arrow[rrdd, dashed, bend right=49] \arrow[rrdd, dashed, bend right=49, shift right=3] &  & B \arrow[dd, "g"] \arrow[dd, "g'", bend left=49] \arrow["\mathsf{id}_B"', loop, distance=2em, in=35, out=325] &  & D \arrow[dd, dashed] \arrow[dd, dashed, bend left] \arrow[dd, dashed, bend right] \arrow["\mathsf{id}_D"', loop, distance=2em, in=125, out=55] \\
+				&  &                                                                                                               &  &                                                                                                                                                \\
+				&  & C \arrow["\mathsf{id}_C"', loop, distance=2em, in=305, out=235]                                               &  & | [alias=E] | E \arrow["\mathsf{id}_E"', loop, distance=2em, in=305, out=235]                                                                               
+			\end{tikzcd}
+			
+			\begin{tikzpicture}[overlay, remember picture]
+				% Calculate bounding box coordinates
+				\coordinate (TopLeft) at ($(A.north west) + (-1.5,1.5)$);
+				\coordinate (BottomRight) at ($(E.south east) + (1.5,-1.5)$);
+				% Draw rounded rectangle
+				\draw[rounded corners, thick, red] (TopLeft) rectangle (BottomRight);
+				% Label the rectangle
+				\node at ($(TopLeft)!0.5!(BottomRight) + (0,2.75)$) [above] {$\category$};
+			\end{tikzpicture}
+		\end{figure}
+		\item (Composition) \\ \adjustbox{scale=1, center}{
 			\begin{tikzcd}
-				A \arrow[rr, "f"]            &  & B \arrow[rr, "g"] &  & C \\
-				A \arrow[rrrr, "h=g\circ f"] &  &                   &  & C
+				&  & B \arrow[rrd, "g"] &  &   \\
+				A \arrow[rrrr, "g\circ f"] \arrow[rru, "f"] &  &                    &  & C
 		\end{tikzcd}}
-		\item (Identity) \[
-		\id_A:A\to A
-		\]
-		\begin{itemize}
-			\item $f\circ\id_A=f$
-			\item $\id_A\circ f=f$
-		\end{itemize}
+		\item (Identity) \begin{center}
+			\begin{tikzcd}
+				A \arrow[rrrr, "\mathsf{id}_B\circ f=f=f\circ \mathsf{id}_A"] \arrow["\mathsf{id}_A"', loop, distance=2em, in=125, out=55] &  &  &  & B \arrow["\mathsf{id}_B"', loop, distance=2em, in=125, out=55]
+			\end{tikzcd}
+		\end{center}
+		\item (Associativity) \begin{center}
+			\begin{tikzcd}
+				A \arrow[rr, "f"] \arrow[rrrr, "g\circ f", bend left] \arrow[rrrrrr, "h\circ(g\circ h)" description, bend left, shift left=3] \arrow[rrrrrr, "(h\circ g)\circ f" description, bend right, shift right=3] &  & B \arrow[rr, "g"] \arrow[rrrr, "h\circ g", bend right] &  & C \arrow[rr, "h"] &  & D
+			\end{tikzcd}
+		\end{center}
 	\end{itemize}
 \end{remark}
 
@@ -266,7 +269,7 @@
 	Seoul, Republic of Korea}
 
 \newpage
-\input{category-theory-note-ref}
+\input{category-theory-note1-ref}
 %\bibliography{category-theory-note-ref}
 %\bibliographystyle{abbrv}
 \end{document}

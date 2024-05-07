@@ -1,0 +1,156 @@
+\documentclass[11pt,openany]{article}
+
+\input{category-theory-note-setup}
+\input{../category-theory-setup-tcolorbox}
+% Header and footer formatting
+\pagestyle{fancy}
+\fancyhead{}
+\fancyhf{}
+\rhead{\textcolor{TealBlue2}{\textbf{Category-Theory-Note}}}%\rule{3cm}{0.4pt}}
+\lhead{\textcolor{TealBlue2}{\textbf{Lecture-Note 3}}}
+% Define footer
+\newcommand{\footer}[1]{
+\begin{flushright}
+	\vspace{2em}
+	%	\includegraphics[width=2cm]{school_logo.jpg} \\
+	\vspace{1em}
+	\textcolor{TealBlue2}{\small\textbf{#1}}
+\end{flushright}
+}
+%\rfoot{\large Department of Information Security, Cryptogrphy and Mathematics, Kookmin Uni.\includegraphics[height=1.5cm]{school_logo.jpg}}
+\fancyfoot{}
+\fancyfoot[C]{-\thepage-}
+
+\input{category-theory-note-thm}
+\input{category-theory-note-command}
+
+\setstretch{1.25}
+\begin{document}
+\pagenumbering{arabic}
+\begin{center}
+	\huge\textbf{Lambda Calculus}\\
+	\vspace{0.5em}
+	\normalsize{\today}\\
+	\vspace{0.5em}
+	\large\textbf{Ji, Yong-hyeon}\\
+	\vspace{0.5em}
+\end{center}
+
+$\lambda\src.\target$
+\begin{lstlisting}
+function (input) {
+	return output
+}
+\end{lstlisting}
+
+$\lambda a.\lambda b.$
+\begin{lstlisting}
+def add (a, b):
+	return a + b
+	
+add(5,7)
+
+def add (a):
+	def adda(b):
+		return a + b
+	return adda
+
+add(5)(7)
+\end{lstlisting}
+$\lambda a. (\lambda b.(a+b))(5)(7)$
+
+$\true=\lambda a.\lambda b. a$\\
+$\false=\lambda a.\lambda b. b$
+
+$\lambda\texttt{bool}.\texttt{bool}(t)(f)$\\
+- returned if bool is true\\
+- returned if bool is false
+
+\paragraph*{Logic Gates}
+\begin{itemize}
+	\item $\lnot = \lambda b. b(\false)(\true)$
+	\begin{itemize}
+		\item returned if $b$ is true
+		\item returned if $b$ is false
+	\end{itemize}
+	\item $\lor = \lambda a.\lambda b. a(\true)(b)$
+	\begin{itemize}
+	\item returned if $a$ is true
+	\item returned if $b$ is false
+	\end{itemize}
+	\item $\land = \lambda a. \lambda b. a(b)(\false)$
+	\begin{itemize}
+	\item returned if $a$ is true
+	\item returned if $b$ is false
+	\end{itemize}
+\end{itemize}
+%\begin{tikzpicture}[sibling distance=10em,
+%%	every node/.style = {
+%%		shape=rectangle, rounded corners,
+%%		draw, align=center
+%%		top color=white, bottom color=blue!20
+%%		}
+%	level 1/.style={sibling distance=15em},
+%	level 2/.style={sibling distance=6em}
+%	]
+%	\node {Grandparents}
+%	child { node {Parent1}
+%		child { node {Child1} }
+%		child { node {Child2} } }
+%	child { node {Parent2}
+%		child { node {Child3} }
+%		child { node {Child4} } }
+%	child { node {Parent3}
+%		child { node {Child5} }
+%		child { node {Child6} }
+%		child { node {Child7} } };
+%\end{tikzpicture}
+
+\begin{tikzpicture}[sibling distance=10em,
+	%	every node/.style = {
+		%		shape=rectangle, rounded corners,
+		%		draw, align=center
+		%		top color=white, bottom color=blue!20
+		%		}
+	level 1/.style={sibling distance=15em},
+	level 2/.style={sibling distance=6em}
+	]
+	\node {$\lambda$}
+	child { node {...}}
+	child { node {$\lambda$}
+		child { node {...} }
+		child { node {$\lambda$} 
+			child { node {...} }
+			child { node {$\lambda$...} }
+		} };
+\end{tikzpicture}
+
+\begin{align*}
+	1&=\lambda f.\lambda a.f(a)\\
+	2&=\lambda f.\lambda a.f(f(a))\\
+	3&=\lambda f.\lambda a.f(f(f(a)))\\
+	4&=\lambda f.\lambda a.f(f(f(f(a))))\\
+\end{align*}
+
+\[
+3(f)(a)=f(f(f(a)))
+\]
+
+\begin{align*}
+	+1 &= \lambda n.\lambda f.\lambda a. f(n(f)(a))\\
+	+ &= \lambda x.\lambda y.x(+1)(y)\\
+	* &=\lambda x.\lambda y.y(+(x))(0) \\
+	** &=\lambda x.\lambda y.y(*(x))(1)
+\end{align*}
+
+\newpage
+\footer{Department of Information Security, Cryptology and Mathematics\\
+	College of Science and Technology\\
+	Kookmin University \\
+	Seoul, Republic of Korea}
+
+\newpage
+\input{category-theory-note3-ref}
+%\bibliography{category-theory-note-ref}
+%\bibliographystyle{abbrv}
+\end{document}
